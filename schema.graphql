@@ -1,0 +1,484 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+union MediaAlly = Property | User
+
+type AccountType {
+    id: ID
+    name: String
+}
+
+type AuthPayload {
+    access_token: String
+    expires_in: Int
+    refresh_token: String
+    token_type: String
+    user: User
+}
+
+type AuthResponse {
+    token: String
+    user: User
+}
+
+type Comment {
+    body: String
+    createdAt: DateTime
+    id: ID
+    post: Post
+    updatedAt: DateTime
+    user: User
+}
+
+type ForgotPasswordResponse {
+    message: String
+    status: String!
+}
+
+type Invoice {
+    address: String
+    amount: String
+    dateOfBirth: String
+    description: String
+    dueDate: String
+    email: String
+    id: ID
+    name: String
+    phone: String
+    property: Property
+    user: User
+}
+
+type LogoutResponse {
+    message: String
+    status: String!
+}
+
+type Media {
+    fileName: String
+    fileType: String
+    fileUrl: String
+    id: ID
+    medially: MediaAlly
+    size: Int
+}
+
+type Message {
+    body: String
+    createdAt: DateTime
+    deletedAt: DateTime
+    id: ID
+    thread: Thread
+    updatedAt: DateTime
+    user: User
+}
+
+type Mutation {
+    addDocument(number: String, type: String!): Boolean
+    authenticate(email: String!, password: String!): AuthResponse
+    changeAvatar(image: Upload!): User
+    changePassword(confirmPassword: String, id: ID!, newPassword: String, oldPassword: String): Boolean
+    createComment(body: String, postId: ID!, userId: ID!): Comment
+    "messaging related mutations"
+    createConversation(participant: ID!, user: ID!): Thread
+    createInvoice(input: NewInvoiceInput): Invoice
+    createPost(title: String, userId: ID!): Post
+    createProperty(input: NewPropertyInput): Property
+    createTenancy(input: NewTenancyInput): Tenancy
+    createUser(input: NewUserInput): User
+    forgotPassword(input: ForgotPasswordInput!): ForgotPasswordResponse!
+    login(input: LoginInput): AuthPayload!
+    logout: LogoutResponse!
+    refreshToken(input: RefreshTokenInput): RefreshTokenPayload!
+    sendInvoice(id: ID!): Boolean
+    "send message mutation"
+    sendMessage(body: String, thread_id: ID!, user_id: ID): Message
+    "send notification"
+    sendNotification(id: ID!, message: String, title: String!): Boolean
+    "Send Receipt"
+    sendReceipt(input: SendReceiptInput): Boolean
+    setAccountType(type: ACCOUNT_TYPE_ENUM): User
+    socialLogin(input: SocialLoginInput!): AuthPayload!
+    updateAccountInfo(address: String!, dateOfBirth: String!, id: ID!, name: String!, phone: String!): User
+    updateForgottenPassword(input: NewPasswordWithCodeInput): ForgotPasswordResponse!
+    updatePassword(input: UpdatePassword!): UpdatePasswordResponse!
+    updateProfile(input: UpdateProfileInput): User
+    verifyEmail(input: VerifyEmailInput!): AuthPayload!
+}
+
+"Information about pagination using a Relay style cursor connection."
+type PageInfo {
+    "Number of nodes in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "The cursor to continue paginating forwards."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "Index of the last available page."
+    lastPage: Int!
+    "The cursor to continue paginating backwards."
+    startCursor: String
+    "Total number of nodes in the paginated connection."
+    total: Int!
+}
+
+"Information about pagination using a fully featured paginator."
+type PaginatorInfo {
+    "Number of items in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "Index of the first item in the current page."
+    firstItem: Int
+    "Are there more pages after this one?"
+    hasMorePages: Boolean!
+    "Index of the last item in the current page."
+    lastItem: Int
+    "Index of the last available page."
+    lastPage: Int!
+    "Number of items per page."
+    perPage: Int!
+    "Number of total available items."
+    total: Int!
+}
+
+type Participant {
+    createdAt: DateTime
+    deletedAt: DateTime
+    id: ID
+    lastRead: DateTime
+    thread: Thread
+    updatedAt: DateTime
+    user: User
+}
+
+type Post {
+    comments: [Comment]
+    createdAt: DateTime
+    id: ID
+    title: String
+    updatedAt: DateTime
+    user: User
+}
+
+type Property {
+    addressLine1: String
+    addressLine2: String
+    amount: String
+    bedrooms: String
+    description: String
+    id: ID
+    medially: [Media]
+    state: String
+    tenants: [Tenancy]
+    title: String
+    toilets: String
+    type: String
+    user: User
+}
+
+type Query {
+    comments(limit: Int, post_id: ID!): [Comment]
+    getConversation(id: ID!): Thread
+    getProperties(type: String!): [Property]
+    getUserConversations: [Thread]
+    getUserTenancies: [Tenancy]
+    getUserTenants: [Tenancy]
+    invoice(id: ID): Invoice
+    me: User
+    posts: [Post]
+    "Query properties"
+    properties(user_id: String!): [Property!]!
+    property(id: ID): Property
+    searchLandlords(term: String): [User]
+    searchProperty(price: [String!]!, rooms: String, state: String!): [Property]!
+    searchTenants(term: String): [Tenancy]
+    tenant(id: ID): Tenancy
+    "Find a single user by an identifying attribute."
+    user(email: String, id: ID): User
+    users(
+        "Limits number of fetched items."
+        first: Int = 10,
+        "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+        name: String,
+        "The offset from which items are returned."
+        page: Int
+    ): UserPaginator
+}
+
+type RefreshTokenPayload {
+    access_token: String!
+    expires_in: Int!
+    refresh_token: String!
+    token_type: String!
+}
+
+type RegisterResponse {
+    status: RegisterStatuses!
+    tokens: AuthPayload
+}
+
+"Information about pagination using a simple paginator."
+type SimplePaginatorInfo {
+    "Number of items in the current page."
+    count: Int!
+    "Index of the current page."
+    currentPage: Int!
+    "Index of the first item in the current page."
+    firstItem: Int
+    "Are there more pages after this one?"
+    hasMorePages: Boolean!
+    "Index of the last item in the current page."
+    lastItem: Int
+    "Number of items per page."
+    perPage: Int!
+}
+
+type Tenancy {
+    amountOwed: String
+    amountPaid: String
+    apartmentNumber: String
+    apartmentType: String
+    createdAt: DateTime
+    email: String
+    from: DateTime
+    id: ID
+    medially: [Media]
+    name: String
+    nextOfKinAddress: String
+    nextOfKinName: String
+    nextOfKinPhone: String
+    phone: String
+    property: Property
+    rent: String
+    to: DateTime
+    updatedAt: DateTime
+}
+
+type Thread {
+    createdAt: DateTime
+    deletedAt: DateTime
+    id: ID
+    messages: [Message]
+    participants: [Participant]
+    subject: String
+    updatedAt: DateTime
+}
+
+type UpdatePasswordResponse {
+    message: String
+    status: String!
+}
+
+type User {
+    accountType: AccountType
+    address: String
+    avatar: String
+    createdAt: DateTime
+    dateOfBirth: String
+    email: String
+    emailVerifiedAt: DateTime
+    id: ID
+    medially: [Media]
+    name: String
+    phone: String
+    properties: [Property]
+    sex: String
+    updatedAt: DateTime
+}
+
+"A paginated list of User items."
+type UserPaginator {
+    "A list of User items."
+    data: [User!]!
+    "Pagination information about the list of items."
+    paginatorInfo: PaginatorInfo!
+}
+
+enum ACCOUNT_TYPE_ENUM {
+    ADMIN
+    LANDLORD
+    TENANT
+}
+
+enum GENDER {
+    FEMALE
+    MALE
+}
+
+"Aggregate functions when ordering by a relation without specifying a column."
+enum OrderByRelationAggregateFunction {
+    "Amount of items."
+    COUNT
+}
+
+"Aggregate functions when ordering by a relation that may specify a column."
+enum OrderByRelationWithColumnAggregateFunction {
+    "Average."
+    AVG
+    "Amount of items."
+    COUNT
+    "Maximum."
+    MAX
+    "Minimum."
+    MIN
+    "Sum."
+    SUM
+}
+
+enum RegisterStatuses {
+    MUST_VERIFY_EMAIL
+    SUCCESS
+}
+
+"Directions for ordering a list of records."
+enum SortOrder {
+    "Sort records in ascending order."
+    ASC
+    "Sort records in descending order."
+    DESC
+}
+
+"Specify if you want to include or exclude trashed results from a query."
+enum Trashed {
+    "Only return trashed results."
+    ONLY
+    "Return both trashed and non-trashed results."
+    WITH
+    "Only return non-trashed results."
+    WITHOUT
+}
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime
+
+scalar Upload
+
+input ForgotPasswordInput {
+    email: String!
+}
+
+input LoginInput {
+    password: String!
+    username: String!
+}
+
+input NewInvoiceInput {
+    address: String!
+    amount: String!
+    dateOfBirth: String!
+    description: String!
+    dueDate: String!
+    email: String!
+    gender: String!
+    name: String!
+    phone: String!
+    property: ID!
+}
+
+input NewPasswordWithCodeInput {
+    email: String!
+    password: String!
+    password_confirmation: String!
+    token: String!
+}
+
+input NewPropertyInput {
+    addressLine1: String!
+    addressLine2: String
+    amount: String!
+    bedrooms: String!
+    description: String!
+    images: [Upload!]!
+    state: String!
+    title: String!
+    toilets: String!
+    type: String!
+}
+
+input NewTenancyInput {
+    amountPaid: String!
+    apartmentNumber: String!
+    apartmentType: String!
+    email: String!
+    from: String!
+    image: Upload!
+    name: String!
+    nextOfKinAddress: String!
+    nextOfKinName: String!
+    nextOfKinPhone: String!
+    phone: String!
+    property: ID!
+    rent: String!
+    to: String!
+}
+
+input NewUserInput {
+    email: String!
+    password: String!
+}
+
+"Allows ordering a list of records."
+input OrderByClause {
+    "The column that is used for ordering."
+    column: String!
+    "The direction that is used for ordering."
+    order: SortOrder!
+}
+
+input RefreshTokenInput {
+    refresh_token: String
+}
+
+input RegisterInput {
+    email: String!
+    name: String!
+    password: String!
+    password_confirmation: String!
+}
+
+input SendReceiptInput {
+    addressLine1: String!
+    addressLine2: String!
+    amount: String!
+    amountOwed: String!
+    amountPaid: String!
+    apartment: String!
+    description: String!
+    dueDate: String!
+    id: ID!
+    name: String!
+    phone: String!
+}
+
+input SocialLoginInput {
+    provider: String!
+    token: String!
+}
+
+input UpdatePassword {
+    old_password: String!
+    password: String!
+    password_confirmation: String!
+}
+
+input UpdateProfileInput {
+    address: String!
+    avatar: Upload!
+    dateOfBirth: String!
+    name: String!
+    phone: String!
+    sex: GENDER
+}
+
+input VerifyEmailInput {
+    token: String!
+}

@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+//* {
+//  @apply text-sm
+//}
+
+.bg-google {
+  background-color: #1976D2;
+}
+.bg-facebook {
+  background-color: #395185;
+}
+.hero {
+  background: url("/images/hero1.png");
+}
+.hero2 {
+  background: url("/images/hero2.png");
+}
+.hero3 {
+  background: url("/images/gradient-black.png");
+}
+
+.hero4 {
+  background: url("/images/hero4.png");
+}
