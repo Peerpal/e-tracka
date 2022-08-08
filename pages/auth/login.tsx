@@ -51,7 +51,7 @@ const Login: NextPage = () => {
             // router.push('/account/setup')
             window.location.href = "/account/setup"
         } else {
-            if(data?.authenticate?.accountType?.name === 'LANDLORD')
+            if(data?.accountType?.name === 'LANDLORD')
                 window.location.href = "/account/dashboard"
             else
                 window.location.href = "/account/dashboard/tenant"
