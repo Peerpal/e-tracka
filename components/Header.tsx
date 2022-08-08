@@ -1,12 +1,14 @@
 import {FC} from "react";
 import Link from "next/link";
 import {useUser} from "../utils/store";
+import {useQuery} from "@apollo/client";
+import {ME_QUERY} from "../graphql/queries";
 
 type Props = {
     className?: string
 }
 const Header: FC<Props> = ({ className}: Props) => {
-    const { user } = useUser()
+    const {data, loading} = useQuery(ME_QUERY)
     let landlordLinks = [
         {
             name: 'Search Property',
@@ -38,7 +40,7 @@ const Header: FC<Props> = ({ className}: Props) => {
     return (
         <nav className={`${className} px-10 py-4 flex items-center  bg-white sticky top-0 z-50`}>
             {
-                user?.accountType?.name === 'TENANT' ? tenantLinks.map((link: any, index:number) => (
+                data?.me?.accountType?.name === 'TENANT' ? tenantLinks.map((link: any, index:number) => (
                     <Link key={index} href={link.link}>
                         <a className={'text-sm rounded-full border border-gray-300 px-4 mr-4'}>
                             {link.name}
