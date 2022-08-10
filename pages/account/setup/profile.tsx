@@ -130,11 +130,12 @@ const AccountSetup: NextPage = () => {
                                                         <select
                                                             onChange={handleChange}
                                                             name={'sex'}
+                                                            defaultValue={'gender'}
                                                             className={'w-full px-4 py-2 border border-solid border-orange rounded-xl focus:outline-none'}
                                                         >
-                                                            {/*<option value={'null'} disabled>Gender</option>*/}
+                                                            <option value={'gender'} disabled>-- Select Gender --</option>
                                                             <option value="MALE">Male</option>
-                                                            <option value="FEMALE">FeMale</option>
+                                                            <option value="FEMALE">Female</option>
 
                                                         </select>
                                                         {errors &&

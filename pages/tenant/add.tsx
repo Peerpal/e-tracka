@@ -1,13 +1,13 @@
 import {NextPage} from "next";
 import DashboardLayout from "../../components/Layouts/dashboard";
 import Image from "next/image";
-import {useMutation, useQuery} from "@apollo/client";
-import {USER_PROPERTIES_QUERY} from "../../graphql/queries";
+import {useLazyQuery, useMutation, useQuery} from "@apollo/client";
+import {ME_QUERY, USER_PROPERTIES_QUERY} from "../../graphql/queries";
 import Select from "react-select";
 import {useUser} from "../../utils/store";
 import {Formik} from "formik";
 import {addTenantValidation} from "../../validations";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {CREATE_TENANCY} from "../../graphql/mutations";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
@@ -15,13 +15,9 @@ import {useRouter} from "next/router";
 
 const DashboardTenantAdd: NextPage = () => {
     const imageSelector = useRef<HTMLInputElement>(null)
-    const { user } = useUser()
     const router = useRouter()
-    const {data} = useQuery(USER_PROPERTIES_QUERY, {
-        variables: {
-            userId: user?.id,
-        }
-    })
+
+    const {data} = useQuery(USER_PROPERTIES_QUERY)
 
     const [createTenancy, {loading}] = useMutation(CREATE_TENANCY)
 
@@ -167,11 +163,8 @@ return (
                                                     value: p.id,
                                                     label: p.title,
                                                 }
-
-
                                             })}
-                                            inputValue={'Select Property'}
-                                        />
+                                                                               />
                                         {errors &&
                                             touched.property &&
                                             errors.property && (

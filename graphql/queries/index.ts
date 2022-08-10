@@ -49,8 +49,8 @@ query User($id: ID!) {
 }
 `;
 export const USER_PROPERTIES_QUERY = gql`
-    query Properties($userId: String!) {
-        properties(user_id: $userId) {
+    query {
+        properties {
             id
             title
             description
