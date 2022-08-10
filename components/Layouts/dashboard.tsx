@@ -38,16 +38,16 @@ const DashboardLayout: FC<Props> = ({ children }: Props) => {
                                 </li>
                                 {
                                     data?.me?.accountType?.name === 'TENANT' ? tenantLinks.map((link: any, index:number) => (
-                                        <li className={'border-b border-b-gray-300 mb-3 pb-2'}>
-                                            <Link key={index} href={link.link}>
+                                        <li key={index} className={'border-b border-b-gray-300 mb-3 pb-2'}>
+                                            <Link href={link.link}>
                                                 <a className={'text-primary text-sm font-semibold px-4'}>
                                                     {link.name}
                                                 </a>
                                             </Link>
                                         </li>
                                     ) ) : landlordLinks.map((link: any, index:number) => (
-                                        <li className={'border-b border-b-gray-300 mb-3 pb-2'}>
-                                            <Link key={index} href={link.link}>
+                                        <li key={index} className={'border-b border-b-gray-300 mb-3 pb-2'}>
+                                            <Link href={link.link}>
                                                 <a className={'text-primary text-sm font-semibold px-4'}>
                                                     {link.name}
                                                 </a>
