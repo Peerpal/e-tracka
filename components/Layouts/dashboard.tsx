@@ -1,6 +1,6 @@
 import {FC, useState} from "react";
 import Sidebar from "../Sidebar";
-import Header from "../Header";
+import Header, {landlordLinks, tenantLinks} from "../Header";
 import Image from "next/image";
 import Link from "next/link";
 import {useQuery} from "@apollo/client";
@@ -36,6 +36,29 @@ const DashboardLayout: FC<Props> = ({ children }: Props) => {
                                         <a className={'text-primary text-sm font-semibold px-4'}>Messages</a>
                                     </Link>
                                 </li>
+                                {
+                                    data?.me?.accountType?.name === 'TENANT' ? tenantLinks.map((link: any, index:number) => (
+                                        <li className={'border-b border-b-gray-300 mb-3 pb-2'}>
+                                            <Link key={index} href={link.link}>
+                                                <a className={'text-primary text-sm font-semibold px-4'}>
+                                                    {link.name}
+                                                </a>
+                                            </Link>
+                                        </li>
+                                    ) ) : landlordLinks.map((link: any, index:number) => (
+                                        <li className={'border-b border-b-gray-300 mb-3 pb-2'}>
+                                            <Link key={index} href={link.link}>
+                                                <a className={'text-primary text-sm font-semibold px-4'}>
+                                                    {link.name}
+                                                </a>
+                                            </Link>
+
+                                        </li>
+
+                                    ))
+                                }
+
+                                {/**/}
                                 <li className={'border-b border-b-gray-300 mb-3 pb-2'}>
                                     <Link href={'/property'}>
                                         <a className={'text-primary text-sm font-semibold px-4'}>Property</a>

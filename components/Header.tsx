@@ -7,35 +7,37 @@ import {ME_QUERY} from "../graphql/queries";
 type Props = {
     className?: string
 }
+
+export const landlordLinks = [
+    {
+        name: 'Search Property',
+        link: '/property'
+    },
+    {
+        name: 'Check Tenant History',
+        link: '/tenant/history'
+    },
+    {
+        name: 'Reports For Tenants',
+        link: '/tenant/manage'
+    }, {
+        name: 'Community',
+        link: '/community'
+    },
+];
+
+export const tenantLinks = [
+    {
+        name: 'Check Landlord History',
+        link: '/account/landlords'
+    }, {
+        name: 'Community',
+        link: '/community'
+    },
+];
 const Header: FC<Props> = ({ className}: Props) => {
     const {data, loading} = useQuery(ME_QUERY)
-    let landlordLinks = [
-        {
-            name: 'Search Property',
-            link: '/property'
-        },
-        {
-            name: 'Check Tenant History',
-            link: '/tenant/history'
-        },
-        {
-            name: 'Reports For Tenants',
-            link: '/tenant/manage'
-        }, {
-            name: 'Community',
-            link: '/community'
-        },
-    ];
 
-    let tenantLinks = [
-        {
-            name: 'Check Landlord History',
-            link: '/account/landlords'
-        }, {
-            name: 'Community',
-            link: '/community'
-        },
-    ];
 
     return (
         <nav className={`${className} px-10 py-4 flex items-center  bg-white sticky top-0 z-50`}>

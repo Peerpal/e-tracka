@@ -18,7 +18,7 @@ const Sidebar: FC<Props> = ({ className }: Props) => {
                 {
                     data ? (
                         <div className={'pt-6'}>
-                            <Image src={`${data && data?.me?.medially[0]?.fileUrl}`} height={50} width={50} alt={'Avatar image'}/>
+                            {/*<Image src={`${data && data?.me?.medially[0]?.fileUrl}`} height={50} width={50} alt={'Avatar image'}/>*/}
                         </div>
                     ) : null
                 }

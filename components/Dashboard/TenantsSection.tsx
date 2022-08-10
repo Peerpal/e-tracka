@@ -26,7 +26,7 @@ const TenantsSection: FC = () => {
                             <div className={'text-xs'}>Owed - ₦{tenant?.amountOwed}</div>
                             <div className={'text-xs'}>Duration - {tenant?.from} -{tenant?.to}  </div>
                         </div>
-                        <Link href={`/tenant/generate-bill/${tenant.id}/`}>
+                        <Link href={`/tenant/bill/${tenant.id}/`}>
                             <div className={'w-full flex justify-center md:justify-start'}>
                                 <a className={'block text-center bg-white mt-4 px-3 py-2 rounded-md hover:bg-gray-100'}>Generate Receipt</a>
                             </div>
