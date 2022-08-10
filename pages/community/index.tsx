@@ -17,7 +17,7 @@ const CommunityIndex: NextPage = () => {
     return (
         <DashboardLayout>
 
-            <div className={'w-full py-12 px-8'}>
+            <div className={'w-full py-12 md:px-8'}>
                 <div className={'w-full mb-8'}>
                     <Formik initialValues={{
                         title: ''

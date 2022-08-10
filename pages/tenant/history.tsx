@@ -21,9 +21,9 @@ const DashboardTenantHistory: NextPage = () => {
     return (
         <DashboardLayout>
             <div
-                className={'w-full flex flex-col justify-center m-12 p-8 border border-2 border-orange-100 rounded-md'}>
+                className={'w-full flex flex-col justify-center md:m-12 md:p-8 border border-2 border-orange-100 rounded-md'}>
                 <div className={'w-full p-4 flex flex-col justify-center items-center'}>
-                    <div className={'w-1/2 mt-3 relative mb-4'}>
+                    <div className={'w-full md:w-1/2 mt-3 relative mb-4'}>
                         <form onSubmit={searchTenants}>
                             <input type="text" placeholder={'Search For Tenant Here...'}
                                    onChange={e => setTerm(e.target.value)}
