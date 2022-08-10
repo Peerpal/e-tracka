@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useQuery} from "@apollo/client";
 import {ME_QUERY} from "../../graphql/queries";
+import {useUser} from "../../utils/store";
 
 type Props = {
     children?: JSX.Element | JSX.Element[]
@@ -12,6 +13,7 @@ type Props = {
 const DashboardLayout: FC<Props> = ({ children }: Props) => {
     const [showMobileOverlay, setShowMobileOverlay] = useState(false)
     const {data, loading} = useQuery(ME_QUERY)
+    const { LogOut } = useUser()
    return  (
         <div className={'min-h-screen bg-white flex relative'}>
             <Sidebar className={'hidden md:block'}/>
@@ -71,7 +73,7 @@ const DashboardLayout: FC<Props> = ({ children }: Props) => {
                                 </li>
                                 <li className={'border-b border-b-gray-300 mb-3 pb-2'}>
 
-                                        <a className={'text-primary text-sm font-semibold px-4'}>Logout</a>
+                                        <a onClick={LogOut} className={'text-primary text-sm font-semibold px-4'}>Logout</a>
 
                                 </li>
                             </ul>
