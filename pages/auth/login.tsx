@@ -53,7 +53,7 @@ const Login: NextPage = () => {
         } else {
            
             
-                if(accountType?.name === 'LANDLORD')
+                if(user?.accountType?.name === 'LANDLORD')
                     window.location.href = "/account/dashboard"
                 else
                     window.location.href = "/account/dashboard/tenant"
