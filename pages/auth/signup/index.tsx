@@ -22,7 +22,7 @@ const SignupIndex: NextPage = () => {
         localStorage.setItem('etr_token', access_token)
         StoreUserDetails && StoreUserDetails(user, access_token)
         toast.success("Authentication successful")
-            router.push('/account/setup')
+            window.location.href = '/account/setup'
 
     }
 

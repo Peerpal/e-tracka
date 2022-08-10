@@ -10,6 +10,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {profileVerificationValidation} from "../../../validations";
 import {toast} from "react-toastify";
 import OnboardTabs from "../../../components/onboarding/OnboardTabs";
+import {useUser} from "../../../utils/store";
 
 export interface UserProfileVerificationForm {
     type: string;
@@ -19,6 +20,8 @@ const AccountSetupVerification: NextPage = () => {
     const [addDocument, {loading}] = useMutation(CREATE_USER_PROFILE_VERIFICATION)
 
     const router = useRouter()
+
+    const {user} = useUser()
 
     const {
         register,
@@ -39,7 +42,7 @@ const AccountSetupVerification: NextPage = () => {
             if (data?.addDocument) {
                 toast.success("Document Submitted for review")
 
-                router.push('/account/dashboard')
+                router.push(user?.accountType?.name === 'LANDLORD' ? '/account/dashboard' : '/account/dashboard/tenant')
             }
         }).catch(error => toast.error(error.message));
     };
