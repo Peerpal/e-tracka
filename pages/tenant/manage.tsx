@@ -32,7 +32,7 @@ const ManageTenants: NextPage = () => {
                                     </div>
                                 </div>
                                 <div className={'w-full md:w-1/2 flex md:justify-end'}>
-                                    <ul className={'text-sm'}>
+                                    <ul className={'text-sm w-full px-2'}>
                                         {/*<li className={'mb-2 pb-1 border-b border-b-transparent hover:border-black'}>*/}
                                         {/*    <Link href={''}>*/}
                                         {/*        <a className={'w-full  flex justify-between'}>*/}
