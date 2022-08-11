@@ -14,7 +14,7 @@ const ManageTenants: NextPage = () => {
             <div className={'w-full flex justify-center md:m-12 md:p-8 border border-2 border-orange-100 rounded-md'}>
                 <div className={'w-full md:w-10/12 '}>
                     {
-                        !data?.getUserTenancies?.length ? (<div className={'w-full flex flex-col justify-center items-center text-center py-12'}>
+                        !data?.getUserTenants?.length ? (<div className={'w-full flex flex-col justify-center items-center text-center py-12'}>
                             <span>No Tenants</span>
                             <Link href={'/tenant/add'}>
                                 <a className={'px-12 py-3 mt-4 bg-primary text-sm text-white font-semibold rounded-xl hover:bg-primary-light'}>Add New Tenant</a>
