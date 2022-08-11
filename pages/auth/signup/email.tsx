@@ -31,16 +31,15 @@ const Email: NextPage = () => {
                 input: {
                     email: data.email,
                     password: data.password,
+                    password_confirmation: data.password,
                 }
             }
         }).then(({data}) => {
-            if (data?.createUser) {
+            if (data?.register) {
                 // localStorage.setItem('etracka_user', JSON.stringify(data?.createUser))
                 toast.success("Account has been created, Please complete Setup")
-                router.push({
-                    pathname: '/auth/login',
-                    query: { redirect: 'get-started'}
-                })
+                router.push('/auth/signup/verify')
+
             }
         }).catch(error => toast.error(error.message));
     };

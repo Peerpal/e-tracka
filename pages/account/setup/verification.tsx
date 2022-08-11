@@ -42,7 +42,7 @@ const AccountSetupVerification: NextPage = () => {
             if (data?.addDocument) {
                 toast.success("Document Submitted for review")
 
-                router.push(user?.accountType?.name === 'LANDLORD' ? '/account/dashboard' : '/account/dashboard/tenant')
+                router.push(user?.accountType?.name !== 'TENANT' ? '/account/dashboard' : '/account/dashboard/tenant')
             }
         }).catch(error => toast.error(error.message));
     };

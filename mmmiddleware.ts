@@ -1,14 +1,19 @@
 //
-// mmiddleware.ts
+// mmmiddleware.ts
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { hasCookie } from 'cookies-next';
 
 // This function can be marked `async` if using `await` inside
-export function mmiddleware(request: NextRequest) {
+export function mmmiddleware(request: NextRequest) {
 
-    console.log(hasCookie('etr_token'))
-    if (hasCookie('etr_token')) {
+    let token;
+    if (typeof window !== 'undefined') {
+        token = localStorage.getItem('etr_token')
+    }
+    console.log("token", token)
+
+    if (token) {
         return NextResponse.next();
     }
     return NextResponse.redirect(new URL('/auth/login', request.url))

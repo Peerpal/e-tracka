@@ -47,19 +47,34 @@ mutation SocialAuth($accessToken: String! $provider: String!) {
 `;
 
 export const CREATE_USER = gql`
-    mutation Login($input: NewUserInput) {
-        createUser(input: $input) {
-            id
-            email
-            name
-            emailVerifiedAt
-            sex
-            address
-            phone
-            createdAt
-            updatedAt
+    mutation Register($input: RegisterInput) {
+        register(input: $input) {
+            status
         }
     }
+`;
+
+export const VERIFY_EMAIL = gql`
+mutation VerifyEmail($input: VerifyEmailInput!) {
+verifyEmail(input: $input) {
+ access_token
+            user {
+                id
+                email
+                name
+                emailVerifiedAt
+                sex
+                address
+                phone
+                createdAt
+                updatedAt
+                accountType {
+                    id
+                    name
+                }
+            }
+            }
+            }
 `;
 
 

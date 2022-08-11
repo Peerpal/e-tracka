@@ -71,7 +71,7 @@ const Index: NextPage = () => {
                               <option value={'null'} disabled>Select</option>
                               <option value="LANDLORD">Landlord</option>
                               <option value="AGENT">Real Estate Agent</option>
-                              {/*<option value="manager">Real Estate Manager</option>*/}
+                              <option value="MANAGER">Real Estate Manager</option>
                               <option value="TENANT">Tenant</option>
                           </select>
                       </div>

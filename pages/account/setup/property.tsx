@@ -23,9 +23,9 @@ const AccountSetupProperty: NextPage = () => {
                   <div>
                       <OnboardTabs currentTab={'property'}/>
                       <div className={'w-full flex justify-center'}>
-                          <div className={'w-full md:w-1/2 text-center py-4'}>
-                              <h1 className={'text-xl mb'}>Your account is almost ready</h1>
-                              <span className={'block mb-3'}>
+                          <div className={'w-full md:w-1/2  py-4'}>
+                              <h1 className={'text-xl text-center mb'}>Your account is almost ready</h1>
+                              <span className={'block mb-3 text-center'}>
                                   Tell us about your property
                               </span>
                               <ListPropertyForm type={'Rent'} onCreated={() => router.push('/account/setup/verification')}/>

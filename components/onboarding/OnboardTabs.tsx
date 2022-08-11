@@ -24,7 +24,7 @@ const OnboardTabs: FC<Props> = ({currentTab}: Props) => {
             link: "/account/setup",
             activeIcon: ""
         },
-        user?.accountType?.name === 'LANDLORD' ? {
+        user?.accountType?.name !== 'TENANT' ? {
             id: 'property',
             name: "Property Information",
             link: "/account/setup/property",

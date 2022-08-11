@@ -34,6 +34,7 @@ export const AppWrapper:FC<Props> = ({children}: Props) => {
             user: null,
             token: null
         })
+        localStorage.removeItem('etr_token')
         router?.push("/")
     }, [])
 

@@ -29,7 +29,7 @@ const Sidebar: FC<Props> = ({ className }: Props) => {
             <div className={'mt-6'}>
                 <ul>
                     <li className={'px-4 py-3 mb-2 transition ease-in-out delay-150 hover:bg-gray-200 border-l border-l-4 border-l-white hover:border-l-orange-400'}>
-                        <Link href={data?.me?.accountType?.name === 'LANDLORD' ? '/account/dashboard' : '/account/dashboard/tenant'}>
+                        <Link href={data?.me?.accountType?.name !== 'TENANT' ? '/account/dashboard' : '/account/dashboard/tenant'}>
                             <a className={'flex'}>
                                 <Image src={'/images/icons/dashboard.png'} height={25} width={25}/>
                                 <span className={'mx-2'}>Dashboard</span>
